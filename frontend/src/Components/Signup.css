@@ -1,0 +1,71 @@
+.signup-page {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-container {
+  width: 360px;
+  padding: 30px;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.8);
+  color: white;
+}
+
+/* Headings */
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.signup-container p {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.signup-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+/* Main signup button */
+.signup-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 12px;
+  background: rgb(234,118,63);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+/* OR divider */
+.or {
+  text-align: center;     /* 🔥 THIS WAS MISSING */
+  margin: 16px 0;
+  color: gray;
+  font-size: 14px;
+}
+
+/* Google button */
+.google-btn {
+  width: 100%;            /* 🔥 THIS WAS MISSING */
+  padding: 10px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}

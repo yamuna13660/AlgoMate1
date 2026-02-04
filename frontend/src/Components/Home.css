@@ -1,0 +1,94 @@
+.HomePage {
+  min-height: 100vh; 
+   background: #021820;  /* ensures the page is at least full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  margin-top: 40px;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  width: 90%;           /* responsive width */
+  max-width: 800px;     /* limit the maximum size */
+  margin-left: auto;
+  margin-right: auto;
+  
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.center h3{
+        letter-spacing:-.01em;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.33;
+        margin-bottom: 10px;
+}
+ p{
+    font-weight: 400;
+    color:rgb(173,173,173);
+}
+.btns {
+  display: flex;
+  gap: 20px;          /* Space between buttons */
+  margin-top: 20px;
+}
+
+.btns a {
+  padding: 12px 12px;
+  background: rgb(234,118,63);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btns a:hover {
+  transform: scale(1.05);
+  color:white;
+  box-shadow: 0 0 10px rgb(234,118,63);
+}
+/**/
+ #heading{
+    margin-top: 50px;
+  margin-bottom: 25px;
+  padding:5px;
+  text-align: center;
+   letter-spacing:-.01em;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.33; /* space for bottom content */
+}
+
+.boxes {
+  display: flex;
+  gap: 20px;
+         
+}
+.boxes div {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+}
+.boxes div h4{
+    font-weight: 550;
+}
+.boxes div p{
+    font-size: 15px;
+}
+.icon {
+  font-size: 25px;
+  color: rgb(234,118,63);
+  margin-bottom: 10px;
+}

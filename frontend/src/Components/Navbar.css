@@ -1,0 +1,65 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:#031f2a;
+  padding: 15px 30px;
+  height: 60px;
+ 
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav h2 {
+  font-weight: 900;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+.nav-links a:hover{
+  color: rgb(234,118,63);
+}
+.profile-container {
+  position: relative;
+}
+
+.profile-icon {
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background-color: #022;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 80px;
+}
+.dropdown:hover{
+  border: 1px solid rgb(234,118,63);
+}
+.dropdown p {
+  margin: 8px 0;
+  cursor: pointer;
+  color: white;
+}
+
+.dropdown p:hover {
+  color: rgb(234,118,63);
+}

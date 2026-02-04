@@ -1,0 +1,169 @@
+#heading1 {
+  color: rgb(234,118,63);
+  font-size: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Make all 3 divs work properly */
+.practice {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.div1 {
+  padding: 10px;
+   background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  width: 180px;
+
+}
+.div1 h4{
+  margin-bottom: 4px;
+}
+.div2 {
+  width: 58%;
+  padding: 10px;
+}
+
+.div3 {
+  width: 20%;
+  padding: 10px;
+}
+
+/* Table Styling */
+.div2 table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #aaa;
+}
+
+.div2 th, .div2 td {
+  border: 1px solid #aaa;
+  padding: 10px;
+  text-align: left;
+}
+
+.div2 th {
+  background-color: #f3f3f3;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Icons */
+.icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+
+/* Solve column center */
+.solve-col a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Progress count */
+.progress-count {
+  text-align:end;
+  font-size: 18px;
+  color: rgb(255, 167, 94);
+  margin-top: 10px;
+  margin:10px;
+}
+
+.pagination {
+  margin-top: 10px;
+}
+
+.pagination button {
+  margin: 8px;
+}
+
+
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .practice {
+    flex-direction: column;
+  }
+
+  .div1, .div2, .div3 {
+    width: 100%;
+  }
+
+  /* Mobile order: table → div3 → div1 */
+  .div2 {
+    order: 1;   /* First */
+  }
+
+  .div3 {
+    order: 2;   /* Second */
+  }
+
+  .div1 {
+    order: 3;   /* Last */
+  }
+}
+
+.difficulty-badge {
+  display: inline-block;       /* makes it shrink to content */
+  padding: 4px 10px;           /* spacing inside */
+  border-radius: 12px;         /* rounded pill shape */
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: white;                /* text color */
+}
+
+/* Example for Easy, Medium, Hard */
+.easy-badge {
+  background-color: #16a34a;   /* green */
+}
+.medium-badge {
+  background-color: #facc15;   /* yellow */
+  color: #000;                 /* darker text */
+}
+
+.hard-badge {
+  background-color: #dc2626;   /* red */
+}
+/*practice cateofires*/
+.div1 ul li  {
+  color:white !important;
+}
+.arrow-icon{
+  color:rgb(234,118,63);
+  font-size: 24px;   /* bigger = thicker visually */
+  font-weight: 900;
+}
+.div1 ul li {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 8px;
+}
+.topic-text {
+  color: rgb(200, 200, 200);
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 4px;
+}
+.topic-text:hover{
+  color:rgb(234,118,63);
+}
+.div3 div{
+  
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 12px;
+  width: 140px;
+  margin:10px;
+  
+}
+input[type="checkbox"] {
+  accent-color: rgb(234,118,63);   /* your orange */
+}
