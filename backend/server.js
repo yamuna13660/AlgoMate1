@@ -9,7 +9,11 @@ const connectDB = require("./config/db");
 const app = express();
 
 // middleware (VERY IMPORTANT)
-app.use(cors());
+app.use(cors({
+  origin: "https://algomate-to9n.onrender.com",
+  credentials: true
+}));
+
 app.use(express.json()); // <-- without this POST body won't work
 
 const userRoutes = require("./routes/userRoutes");
