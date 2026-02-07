@@ -92,3 +92,43 @@
   color: rgb(234,118,63);
   margin-bottom: 10px;
 }
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .boxes {
+    flex-direction: column;   /* stack boxes vertically */
+    align-items: center;
+  }
+
+  .boxes div {
+    width: 90%;              /* full width on mobile */
+    max-width: 350px;
+  }
+
+  .btns {
+    flex-direction: column;  /* buttons also stack nicely */
+    gap: 12px;
+  }
+
+  .center {
+    padding: 20px;
+  }
+
+  .center h3,
+  #heading {
+    font-size: 1.3rem;
+  }
+}
+.boxes div {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boxes div:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+@media (max-width: 600px) {
+  .center p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
