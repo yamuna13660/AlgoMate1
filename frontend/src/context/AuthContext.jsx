@@ -14,7 +14,7 @@ export function AuthProvider({ children }) {
       return;
     }
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/auth/verify`, {
+    fetch(`https://algomate-backend-gg3u.onrender.com/api/auth/verify`, {
   headers: { // <--- You were missing this wrapper!
     "Authorization": `Bearer ${token}`
   }

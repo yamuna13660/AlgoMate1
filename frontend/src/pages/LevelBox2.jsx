@@ -44,7 +44,7 @@ const handleCheck = async (problemId) => {
 
   try {
     if (!isChecked) {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/progress/add`, {
+      await fetch(`https://algomate-backend-gg3u.onrender.com/api/progress/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const handleCheck = async (problemId) => {
         })
       });
     } else {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/progress/remove`, {
+      await fetch(`https://algomate-backend-gg3u.onrender.com/api/progress/remove`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
