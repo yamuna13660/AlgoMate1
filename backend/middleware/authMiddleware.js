@@ -1,34 +1,33 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-const protect= async (req, res, next) => {
+const protect = async (req, res, next) => {
   let token;
 
-  // 1️⃣ Check token exists in header
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
+  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     try {
-      // 2️⃣ Get token from header
       token = req.headers.authorization.split(" ")[1];
 
-      // 3️⃣ Verify token
+      // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      // 4️⃣ Get user from DB (remove password)
+      // Get user from DB
       req.user = await User.findById(decoded.id).select("-password");
 
-      // 5️⃣ Allow request
-      next();
+      // CRITICAL CHECK: If the user was deleted but token is still valid
+      if (!req.user) {
+        return res.status(401).json({ message: "User no longer exists" });
+      }
+
+      return next(); // Use 'return' to stop execution here
     } catch (error) {
-      res.status(401).json({ message: "Not authorized, token failed" });
+      console.error("JWT Error:", error.message);
+      return res.status(401).json({ message: "Not authorized, token failed" });
     }
   }
 
   if (!token) {
-    res.status(401).json({ message: "Not authorized, no token" });
+    return res.status(401).json({ message: "Not authorized, no token" });
   }
 };
 
-module.exports = {protect};
+module.exports = { protect };
