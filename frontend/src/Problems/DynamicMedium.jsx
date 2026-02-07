@@ -31,7 +31,7 @@ useEffect(() => {
   })
     .then(res => res.json())
     .then(data => {
-      const solvedMedium = data.mediumProblems || {};
+      const solvedMedium = data.mediumProblems || [];
       const checkedMap = {};
 
       solvedMedium.forEach(id => {

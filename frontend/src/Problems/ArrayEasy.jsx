@@ -43,7 +43,7 @@ useEffect(() => {
   })
     .then(res => res.json())
     .then(data => {
-      const solvedEasy = data.easyProblems || {};
+      const solvedEasy = data.easyProblems || [];
       const checkedMap = {};
 
       solvedEasy.forEach(id => {

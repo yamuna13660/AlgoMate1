@@ -56,7 +56,7 @@ useEffect(() => {
   })
     .then(res => res.json())
     .then(data => {
-      const solvedHard = data.hardProblems || {};
+      const solvedHard = data.hardProblems || [];
       const checkedMap = {};
 
       solvedHard.forEach(id => {
