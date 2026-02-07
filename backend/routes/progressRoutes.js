@@ -54,7 +54,7 @@ router.delete("/remove", protect, async (req, res) => {
 
 router.get("/me", protect, async (req, res) => {
   try {
-    const progress = await Progress.find({ userId: req.user.id });
+    const progress = await Progress.find({ userId: req.user._id });
 
     const stats = {
   easy: progress.filter(p => p.difficulty === "easy").length,
