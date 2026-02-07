@@ -31,7 +31,7 @@ export default function BinaryTreesEasy() {
     const token = localStorage.getItem("token");
     if (!token) return;
   
-    fetch(`https://algomate-backend-gg3u.onrender.com/api/progress/me`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/progress/me`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

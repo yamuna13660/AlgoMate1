@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // import Link
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // for redirect
 import "../Components/Signup.css";
 
 export default function Signup() {
@@ -11,7 +11,6 @@ export default function Signup() {
   });
 
   const navigate = useNavigate();
-  const [accountCreated, setAccountCreated] = useState(false); // ✅ track if signup was successful
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,7 +25,8 @@ export default function Signup() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/register", {
+      // 🔹 Call backend API
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -39,8 +39,8 @@ export default function Signup() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("Account created successfully! 🎉");
-        setAccountCreated(true); // ✅ show the button
+        alert("Account created successfully! Please login.");
+        navigate("/login"); // redirect to login
       } else {
         alert(data.message || "Signup failed!");
       }
@@ -97,15 +97,6 @@ export default function Signup() {
             Create Account
           </button>
         </form>
-
-        {/* 🔹 Show Go to Login button if account is created */}
-        {accountCreated && (
-          <div style={{ marginTop: "1rem", textAlign: "center" }}>
-            <Link to="/login">
-              <button className="signup-btn">Go to Login</button>
-            </Link>
-          </div>
-        )}
       </div>
     </div>
   );

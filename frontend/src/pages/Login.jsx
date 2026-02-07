@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../Components/Signup.css";
 
 export default function Login() {
@@ -18,7 +18,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/login", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
@@ -27,19 +27,15 @@ export default function Login() {
       const data = await res.json();
 
       if (res.ok) {
-        // ✅ store token
+        // 🔹 Save token
         localStorage.setItem("token", data.token);
-
-        // ✅ store user info
-        localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/practice");
+         window.location.href = "/practice";// redirect to profile
       } else {
-        alert(data.message || "Login failed");
+        alert(data.message || "Login failed!");
       }
-
     } catch (error) {
-      console.error("Login error:", error);
-      alert("Server error");
+      console.error(error);
+      alert("Server error!");
     }
   }
 
@@ -72,16 +68,6 @@ export default function Login() {
             Login
           </button>
         </form>
-
-        <p style={{ marginTop: "1rem", textAlign: "center" }}>
-          Don't have an account?{" "}
-          <Link
-            to="/signup"
-            style={{ color: "rgb(234,118,63)", fontWeight: "bold" }}
-          >
-            Sign Up
-          </Link>
-        </p>
       </div>
     </div>
   );
