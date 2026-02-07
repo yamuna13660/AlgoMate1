@@ -11,7 +11,8 @@ export default function Profile() {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const userData = JSON.parse(storedUser);
-      setUser({ fullName: userData.name });
+      const displayName = userData.name || userData.fullName || userData.email || "User";
+setUser({ fullName: displayName });
     }
 
     // ✅ Fetch progress
