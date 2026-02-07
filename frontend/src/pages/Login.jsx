@@ -29,6 +29,7 @@ export default function Login() {
       if (res.ok) {
         // 🔹 Save token
         localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
          window.location.href = "/practice";// redirect to profile
       } else {
         alert(data.message || "Login failed!");
