@@ -1,13 +1,13 @@
-# 🚀 AlgoMate – DSA Tracking Tool
+#  AlgoMate – DSA Tracking Tool
 
 AlgoMate is a web-based platform designed to help developers track their progress across **480+ Data Structures and Algorithms (DSA) problems**.
 
-### 🌐 Live Project
+###  Live Project
 👉 https://algomate-to9n.onrender.com
 
 ---
 
-## ✨ Features
+##  Features
 - **Progress Tracking:** Mark problems as done and track daily progress.
 - **Topic-wise Breakdown:** Problems categorized by Arrays, Strings, Trees, etc.
 - **Visual Stats:** Dashboard showing Easy, Medium, and Hard problem counts.
@@ -15,7 +15,7 @@ AlgoMate is a web-based platform designed to help developers track their progres
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 - **Frontend:** React.js, CSS
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
