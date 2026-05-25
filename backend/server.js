@@ -9,8 +9,13 @@ const connectDB = require("./config/db");
 const app = express();
 
 // middleware (VERY IMPORTANT)
+// After
 app.use(cors({
-  origin: "https://algomate-to9n.onrender.com",
+  origin: [
+    "https://algomate-to9n.onrender.com",
+    "http://localhost:5173",
+    "http://localhost:5174",
+  ],
   credentials: true
 }));
 
