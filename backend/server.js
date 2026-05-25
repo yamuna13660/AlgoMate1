@@ -13,6 +13,7 @@ const app = express();
 app.use(cors({
   origin: [
     "https://algomate-to9n.onrender.com",
+      "https://algomate1.onrender.com",
     "http://localhost:5173",
     "http://localhost:5174",
   ],
