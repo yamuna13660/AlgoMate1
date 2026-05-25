@@ -30,7 +30,7 @@ app.use("/api/users", userRoutes);
 app.get("/", (req, res) => {
   res.send("Backend running");
 });
-
+app.use("/api/hint", require("./routes/hint"));
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log("Server running on port 5000");

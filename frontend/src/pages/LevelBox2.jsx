@@ -1,6 +1,17 @@
-import { useState, useEffect } from "react";
 
-export default function LevelBox2({ problems, checked, setChecked, difficulty,topic }) {
+import React, { useState, useEffect } from "react";
+export default function LevelBox2({
+  problems,
+  checked,
+  setChecked,
+  difficulty,
+  topic
+}) {
+
+  const [hint, setHint] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [selectedProblem, setSelectedProblem] = useState("");
+
   const leetIcon = (
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png"
@@ -24,110 +35,265 @@ export default function LevelBox2({ problems, checked, setChecked, difficulty,to
   }
 
   const [page, setPage] = useState(1);
+
   const problemsPerPage = 10;
-  const totalPages = Math.ceil(problems.length / problemsPerPage);
+
+  const totalPages = Math.ceil(
+    problems.length / problemsPerPage
+  );
+
   const startIndex = (page - 1) * problemsPerPage;
-  const currentProblems = problems.slice(startIndex, startIndex + problemsPerPage);
-const handleCheck = async (problemId) => {
-  const token = localStorage.getItem("token");
-  if (!token) return;
 
-  const isChecked = !!checked[problemId];
+  const currentProblems = problems.slice(
+    startIndex,
+    startIndex + problemsPerPage
+  );
 
-  // instant UI update
-  setChecked(prev => {
-    const copy = { ...prev };
-    if (isChecked) delete copy[problemId];
-    else copy[problemId] = true;
-    return copy;
-  });
+  // =========================
+  // Progress Handling
+  // =========================
 
-  try {
-    if (!isChecked) {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/progress/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-         Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          problemId,
-          difficulty   // ✅ dynamic
-        })
-      });
-    } else {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/progress/remove`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          problemId,
-          difficulty   // ✅ REQUIRED for delete
-        })
-      });
+  const handleCheck = async (problemId) => {
+
+    const token = localStorage.getItem("token");
+
+    if (!token) return;
+
+    const isChecked = !!checked[problemId];
+
+    // instant UI update
+    setChecked(prev => {
+
+      const copy = { ...prev };
+
+      if (isChecked) {
+        delete copy[problemId];
+      } else {
+        copy[problemId] = true;
+      }
+
+      return copy;
+    });
+
+    try {
+
+      if (!isChecked) {
+
+        await fetch(
+          `${import.meta.env.VITE_API_URL}/api/progress/add`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              problemId,
+              difficulty
+            })
+          }
+        );
+
+      } else {
+
+        await fetch(
+          `${import.meta.env.VITE_API_URL}/api/progress/remove`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              problemId,
+              difficulty
+            })
+          }
+        );
+      }
+
+    } catch (err) {
+
+      console.error("Progress update failed", err);
     }
-  } catch (err) {
-    console.error("Progress update failed", err);
-  }
-};
+  };
 
+  // =========================
+  // AI Hint
+  // =========================
 
+  const getHint = async (problem) => {
 
+    setHint("");
 
+    setSelectedProblem(problem.title);
+
+    setLoading(true);
+
+    try {
+
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/hint/get-hint`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            problemTitle: problem.title,
+            problemDescription: `DSA problem about ${problem.title}`,
+            userCode: ""
+          })
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(
+          data.error || "Failed to fetch hint"
+        );
+      }
+
+      setHint(data.hint);
+
+    } catch (err) {
+
+      console.error(err);
+
+    } finally {
+
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="div2">
+
       <table>
+
         <thead>
           <tr>
             <th>Status</th>
             <th>Problem</th>
             <th>Practice</th>
             <th>Difficulty</th>
+            <th>AI Hint</th>
           </tr>
         </thead>
+
         <tbody>
+
           {currentProblems.map((p, index) => {
-  const globalIndex = startIndex + index + 1;
-  const problemId = `${topic}-${difficulty}-${globalIndex}`;
 
-  return (
-    <tr key={problemId}>
-      <td>
-        <input
-          type="checkbox"
-          checked={!!checked[problemId]}
-          onChange={() => handleCheck(problemId)}
-        />
-      </td>
+            const globalIndex =
+              startIndex + index + 1;
 
-      <td>{p.title}</td>
+            const problemId =
+              `${topic}-${difficulty}-${globalIndex}`;
 
-      <td className="solve-col">
-        <a href={p.link} target="_blank" rel="noopener noreferrer">
-          {getIcon(p.link)}
-        </a>
-      </td>
+            return (
+              <React.Fragment key={problemId}>
 
-      <td>
-        <span className={`difficulty-badge ${difficulty}-badge`}>
-          {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-        </span>
-      </td>
-    </tr>
-  );
-})}
+                <tr>
+
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={!!checked[problemId]}
+                      onChange={() =>
+                        handleCheck(problemId)
+                      }
+                    />
+                  </td>
+
+                  <td>{p.title}</td>
+
+                  <td className="solve-col">
+                    <a
+                      href={p.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {getIcon(p.link)}
+                    </a>
+                  </td>
+
+                  <td>
+                    <span
+                      className={`difficulty-badge ${difficulty}-badge`}
+                    >
+                      {difficulty.charAt(0).toUpperCase() +
+                        difficulty.slice(1)}
+                    </span>
+                  </td>
+
+                  <td>
+                    <button
+                      className="hint-btn"
+                      onClick={() => getHint(p)}
+                      disabled={loading}
+                    >
+                      💡 Hint
+                    </button>
+                  </td>
+
+                </tr>
+
+                {selectedProblem === p.title &&
+                  (hint || loading) && (
+
+                  <tr>
+
+                    <td colSpan="5">
+
+                      <div className="hint-box">
+
+                        <strong>
+                          💡 AI Hint:
+                        </strong>
+
+                        <p>
+                          {loading
+                            ? "Thinking..."
+                            : hint}
+                        </p>
+
+                      </div>
+
+                    </td>
+
+                  </tr>
+                )}
+              </React.Fragment>
+            );
+          })}
 
         </tbody>
       </table>
 
       <div className="pagination">
-        <button disabled={page === 1} onClick={() => setPage(page - 1)}>⬅ Prev</button>
-        <span>Page {page} / {totalPages}</span>
-        <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>Next ➡</button>
+
+        <button
+          disabled={page === 1}
+          onClick={() => setPage(page - 1)}
+        >
+          ⬅ Prev
+        </button>
+
+        <span>
+          Page {page} / {totalPages}
+        </span>
+
+        <button
+          disabled={page === totalPages}
+          onClick={() => setPage(page + 1)}
+        >
+          Next ➡
+        </button>
+
       </div>
+
     </div>
   );
 }
