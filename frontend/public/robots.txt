@@ -4,4 +4,4 @@ Disallow: /profile
 Disallow: /login
 Disallow: /signup
 
-Sitemap: https://algomate-to9n.onrender.com/sitemap.xml
+Sitemap: https://algomate-frontend-bpql.onrender.com/sitemap.xml
