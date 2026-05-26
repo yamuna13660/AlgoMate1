@@ -3,7 +3,7 @@
 AlgoMate is a web-based platform that enables users to track and manage their progress across 480+ Data Structures and Algorithms (DSA) problems.
 
 ###  Live Project
-👉 https://algomate-to9n.onrender.com
+👉https://algomate-frontend-bpql.onrender.com 
 
 
 ##  Features
