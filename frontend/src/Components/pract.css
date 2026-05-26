@@ -47,10 +47,16 @@
 }
 /*pracrice section*/
 .practice-category{
-    display:flex;
-    margin-left: 20px;
-}
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
 
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 25px auto;
+}
 .practice-category div {
   margin-left: 20px;
   background: rgba(255,255,255,0.05);
@@ -135,5 +141,29 @@ border-color: rgb(234,118,63);
   border: none !important;
 }
 .easy:hover,.medium:hover,.hard:hover{
+  color: white;
+}
+
+
+.hint-btn{
+  background: rgb(234,118,63);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.hint-btn:hover{
+  opacity: 0.9;
+}
+
+.hint-box{
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid rgb(234,118,63);
   color: white;
 }
